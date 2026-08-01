@@ -1,10 +1,11 @@
 # DEEP FIELD — Tony Zhao
 
 A portfolio built as a cinematic product experience rather than a resume.
-Scrolling flies a camera around the TZ-100 — an invented neural accelerator
-rendered as real geometry, orbited by a ring of data packets and a field of
-tumbling silicon. Each sector of the site has its own camera state, lighting
-and dimming curve.
+The home page flies a camera around the TZ-100 — an invented neural
+accelerator rendered as real geometry, orbited by a ring of data packets and a
+field of tumbling silicon. Case studies live on their own routes with a
+lighter CSS backdrop, and Moo, a tuxedo-cat astronaut AI co-pilot, rides along
+on every page.
 
 **Reference language:** Interstellar · NASA mission control · Apple product
 pages · Love, Death & Robots · Awwwards-grade motion.
@@ -45,11 +46,15 @@ Deploys to Vercel with zero configuration.
 
 ```
 app/
-  layout.tsx              metadata, JSON-LD, self-hosted fonts
-  page.tsx                server shell
+  layout.tsx              metadata, JSON-LD, fonts, nav, Moo
+  page.tsx                home
+  work/page.tsx           mission archive
+  work/[slug]/page.tsx    case study (prerendered per project)
+  about/  contact/        standalone pages
+  api/chat/route.ts       Moo's model call (server builds only)
   globals.css             design tokens + component layer
 components/
-  Experience.tsx          composition root (renderer + HUD + sections)
+  home/HomeExperience.tsx composition root for the home page
   background/
     Silicon.tsx           Three.js renderer, imperative flyTo handle
     Atmosphere.tsx        veil / dimmer / grid / scanlines / grain
@@ -57,12 +62,16 @@ components/
     Boot.tsx  Nav.tsx  Rails.tsx  Cursor.tsx
   primitives/
     Reveal.tsx  SplitHeading.tsx  Counter.tsx  Meter.tsx
-  sections/
-    Hero · Missions · CaseStudyAI · Pipeline
-    CaseStudyEnterprise · DeliveryTimeline · Responsibilities
-    Skills · Contact
+  case/                   shared case-study renderer + block components
+  cards/                  project card + SVG project previews
+  work/MissionArchive.tsx filterable archive
+  assistant/              Moo
+  layout/PageShell.tsx    frame for non-home routes
+  sections/               Hero · Skills · Contact
 lib/
-  content.ts              every word on the site, typed
+  content.ts              site-level copy (identity, nav, about, contact)
+  ai/                     Moo's knowledge, moderation, provider, answering
+  basePath.ts             asset prefixing for GitHub Pages
   camera.ts               the flight path (one state per sector)
   rendererStore.ts        imperative handle registry
   silicon/
@@ -107,6 +116,125 @@ now maps them onto an actual camera: `uZoom` to dolly distance, `uOffset` to a
 pan in camera space (so it still means "screen half-heights"), `uTilt` to
 elevation. Keeping the contract meant the flight path in `lib/camera.ts` and
 the whole scroll choreography survived the change of subject untouched.
+
+---
+
+## Routes
+
+| Route | What it is |
+|---|---|
+| `/` | Cinematic overview: hero, positioning, four project cards, capabilities, Moo, about preview, contact |
+| `/work` | Mission archive — filterable database view of every case study |
+| `/work/ai-teacher-platform` | AI Teacher Growth Platform |
+| `/work/early-childhood-educator-os` | Early Childhood Educator OS |
+| `/work/enterprise-logistics-saas` | Enterprise Logistics SaaS |
+| `/work/calories-fitness-app` | Calories — Fitness Tracking App |
+| `/about` | Profile, approach, capabilities, strengths, experience |
+| `/contact` | Contact detail and what Tony is available for |
+| `/api/chat` | Moo's model call — **server builds only**, see below |
+
+Every case study is prerendered via `generateStaticParams`, so direct URLs and
+refreshes work without a router fallback.
+
+---
+
+## Content architecture
+
+Case-study copy is data, never markup:
+
+```
+content/
+  types.ts                 the CaseStudy model and the block union
+  projects/
+    index.ts               display order, lookup, prev/next, categories
+    ai-teacher-platform.ts
+    early-childhood-educator-os.ts
+    enterprise-logistics-saas.ts
+    calories-fitness-app.ts
+```
+
+Each project declares an ordered list of blocks — `prose`, `list`, `pillars`,
+`flow`, `features`, `stack`, `note` — and `components/case/Blocks.tsx` switches
+on `kind`. **Adding a project is one content file plus one line in
+`index.ts`.** No component changes, no new route file.
+
+Two rules hold across the whole directory:
+
+1. **No invented metrics.** Where a number was never verified the copy says
+   what was intended or delivered, never what it achieved. Several case
+   studies carry an explicit "On the numbers" note saying so.
+2. **No client identities.** Public sector labels only.
+
+---
+
+## Moo, the AI co-pilot
+
+```
+lib/ai/
+  knowledge.ts    builds a passage index from content/ + lib/content — the
+                  assistant's only source of truth
+  moderation.ts   decides when Moo hisses (injection, abuse, fabrication,
+                  off-topic, nonsense) — deliberately hard to trigger
+  provider.ts     provider-agnostic OpenAI-compatible client + response
+                  validation
+  answer.ts       moderation → retrieval → model, with local fallback
+  suggestions.ts  starter questions, chosen per route
+components/assistant/
+  Moo.tsx           orchestration and art states
+  ChatPanel.tsx     the console UI, focus trap, sources
+  useMooEmotion.ts  idle / purring / hiss state machine
+  useMooAudio.ts    synthesised purr and meow (no audio files)
+```
+
+**It works with no API key.** Without one, answers come from the local
+retrieval index in the browser — which is exactly what happens on GitHub
+Pages, since a static export has no server. Setting a key upgrades those
+answers from retrieved passages to generated prose; nothing else changes.
+
+The model can only ever see passages built from published site content, so
+"never invent" is a property of the architecture rather than a hopeful line in
+a prompt.
+
+Audio is **muted by default**, synthesised with WebAudio rather than shipped
+as files, and the AudioContext is not constructed until the visitor's first
+click — so autoplay is impossible by construction. The mute preference
+persists in `localStorage`.
+
+### Environment variables
+
+Copy `.env.example` to `.env.local`. All of them are optional.
+
+| Variable | Purpose |
+|---|---|
+| `AI_API_KEY` | Server-side model key. No `NEXT_PUBLIC_` prefix, so Next refuses to inline it into the browser bundle. |
+| `AI_BASE_URL` | Any OpenAI-compatible endpoint. Defaults to `https://api.deepseek.com`. |
+| `AI_MODEL` | Model name. Defaults to `deepseek-chat`. |
+| `AI_TIMEOUT_MS` | Milliseconds before falling back to local retrieval. Defaults to 20000. |
+
+**Never commit a real key.** `.env` and `.env.local` are git-ignored.
+
+### Cat assets
+
+`public/assistant/moo-{idle,purring,hissing}.{webp,png}` — cut from a single
+supplied sprite sheet, background removed to transparency, trimmed and scaled
+to 320px tall. 84 KB total for all three WebPs.
+
+---
+
+## Build modes
+
+The site is static by default and needs a server only for Moo's model call, so
+`next.config.mjs` has two modes:
+
+| Mode | Trigger | Result |
+|---|---|---|
+| Static | default, and what the Pages workflow runs | `output: "export"`, `/api/chat` excluded, Moo answers locally |
+| Server | `NEXT_STATIC_EXPORT=false`, or `VERCEL` | normal build, `/api/chat` included, Moo can call a model |
+
+A static export cannot contain a route handler. Pages here are all `.tsx` and
+the chat route is the only `.ts` file under `app/`, so the static build drops
+`ts` from `pageExtensions` and excludes exactly that file — without moving it
+out of the repository.
 
 ## Running it
 
@@ -186,8 +314,9 @@ Push it and the workflow publishes it. Three things worth knowing:
 
 ### Editing content
 
-All copy lives in `lib/content.ts`. Adding a mission, a workflow step or a
-timeline stage is a data change — no component edits.
+Site-level copy lives in `lib/content.ts`. Project copy lives in
+`content/projects/*.ts`. Both are data — adding a mission, a workflow step or
+a timeline stage never requires a component edit.
 
 ### Tuning the flight path
 

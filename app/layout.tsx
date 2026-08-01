@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { IDENTITY } from "@/lib/content";
+import Atmosphere from "@/components/background/Atmosphere";
+import SiteNav from "@/components/hud/SiteNav";
+import Moo from "@/components/assistant/Moo";
 
 /* Self-hosted (via @fontsource files committed to assets/fonts) so the build
    never depends on a network fetch and the page ships zero third-party requests. */
@@ -56,12 +59,16 @@ const personSchema = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${mono.variable}`}>
-      <body className="is-loading">
+      <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
+        <a className="skip-link" href="#main">Skip to content</a>
+        <Atmosphere />
+        <SiteNav />
         {children}
+        <Moo />
       </body>
     </html>
   );

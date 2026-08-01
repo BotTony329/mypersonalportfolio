@@ -9,7 +9,13 @@ const variants: Variants = {
 };
 
 /** The only element types this design actually reveals. */
-const TAGS = { div: motion.div, p: motion.p, h3: motion.h3 } as const;
+const TAGS = {
+  div: motion.div,
+  p: motion.p,
+  h2: motion.h2,
+  h3: motion.h3,
+  li: motion.li,
+} as const;
 export type RevealTag = keyof typeof TAGS;
 
 /**

@@ -6,11 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CAMERA, SECTOR_LABEL, viewportScale, type SectorId } from "./camera";
 import { getRenderer } from "./rendererStore";
 
-const SECTORS: SectorId[] = ["hero", "missions", "case01", "case02", "resp", "skills", "contact"];
-const NAV_FOR: Record<SectorId, string> = {
-  hero: "hero", missions: "missions", case01: "case01",
-  case02: "case02", resp: "case02", skills: "skills", contact: "contact",
-};
+const SECTORS: SectorId[] = ["hero", "positioning", "missions", "skills", "copilot", "about-preview", "contact"];
 
 /**
  * Binds scroll position to (a) the renderer's camera state, (b) the dimming
@@ -24,7 +20,7 @@ const NAV_FOR: Record<SectorId, string> = {
  * starting point.
  */
 export function useSectorDirector(
-  onSector: (label: string, navId: string) => void
+  onSector: (label: string) => void
 ) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -62,7 +58,7 @@ export function useSectorDirector(
       if (id === current) return;
       current = id;
       flyTo(id);
-      onSector(SECTOR_LABEL[id], NAV_FOR[id]);
+      onSector(SECTOR_LABEL[id]);
     };
 
     measure();

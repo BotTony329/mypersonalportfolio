@@ -1,19 +1,27 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
 const ROWS = [
   "Calibrating die interconnect geometry",
-  "Loading mission archive · 02 records",
+  "Loading mission archive · 04 records",
   "Spooling silicon render pipeline",
-  "Handshake complete — welcome, operator",
+  "Co-pilot Moo online — welcome, operator",
 ];
 
 export default function Boot() {
   const root = useRef<HTMLDivElement>(null);
   const [pct, setPct] = useState(0);
   const [gone, setGone] = useState(false);
+
+  /* The scroll lock belongs to the boot screen, not to the document. Owning
+     it here means every other route is scrollable on arrival — when this was
+     a class on <body> in the layout, pages without a Boot stayed frozen. */
+  useLayoutEffect(() => {
+    document.body.classList.add("is-loading");
+    return () => document.body.classList.remove("is-loading");
+  }, []);
 
   useEffect(() => {
     const el = root.current;
