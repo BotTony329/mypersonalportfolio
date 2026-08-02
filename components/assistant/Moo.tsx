@@ -21,10 +21,19 @@ let turnId = 0;
 const nextId = () => `turn-${++turnId}`;
 
 /**
+ * The trailing slash is required, not cosmetic. `trailingSlash: true` in
+ * next.config.mjs makes Next answer `POST /api/chat` with a 308 to
+ * `/api/chat/`; posting straight to the canonical URL avoids relying on the
+ * redirect being replayed with its method and body intact. The base path is
+ * empty on the server build, but prefixing keeps this correct if that changes.
+ */
+const CHAT_ENDPOINT = withBasePath("/api/chat/");
+
+/**
  * Moo — the site's AI co-pilot.
  *
- * She talks to `/api/chat` when a server is there to answer, and falls back to
- * the identical retrieval logic in the browser when it is not. That fallback
+ * She talks to the chat route when a server is there to answer, and falls back
+ * to the identical retrieval logic in the browser when it is not. That fallback
  * is the normal case on static hosting, so it is a first-class path rather
  * than an error state: no key, no server, still a working assistant.
  */
@@ -60,7 +69,7 @@ export default function Moo() {
 
       if (serverAvailable) {
         try {
-          const res = await fetch("/api/chat", {
+          const res = await fetch(CHAT_ENDPOINT, {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ question, path: pathname }),

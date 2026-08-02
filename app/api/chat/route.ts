@@ -13,6 +13,9 @@ import { answerQuestion } from "@/lib/ai/answer";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+/* The provider call can take tens of seconds; the platform default is far
+   shorter, which would abort the request before the model replies. */
+export const maxDuration = 60;
 
 /* Small in-memory throttle. Not a substitute for a real limiter behind a load
    balancer, but enough to stop one browser tab burning the model budget. */
@@ -51,6 +54,8 @@ export async function POST(request: Request) {
     );
   }
 
+  /* answerQuestion emits the structured [moo:chat] diagnostics line — see
+     lib/ai/diagnostics.ts for exactly which fields are safe to log. */
   const reply = await answerQuestion({
     question,
     path: typeof path === "string" ? path : undefined,

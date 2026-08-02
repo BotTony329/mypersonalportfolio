@@ -1,17 +1,19 @@
 import type { Emotion } from "./types";
 import { isEmotion } from "./types";
+import type { FallbackReason } from "./diagnostics";
 
 /**
  * Provider-agnostic model access.
  *
- * Everything provider-specific is a single fetch against an OpenAI-compatible
+ * Everything provider-specific is a single POST to an OpenAI-compatible
  * chat-completions endpoint, which is what DeepSeek, OpenAI, Together, Groq
  * and most hosted gateways speak. Swapping provider is two environment
  * variables, not a code change — so nothing above this file knows or cares
  * which model answered.
  *
  * Server-side only. `AI_API_KEY` has no NEXT_PUBLIC_ prefix, so Next will
- * refuse to inline it into a client bundle even by accident.
+ * refuse to inline it into a client bundle even by accident, and it is never
+ * returned to the caller or written to a log.
  */
 
 export interface ProviderConfig {
@@ -26,9 +28,11 @@ export function readProviderConfig(): ProviderConfig | null {
   if (!apiKey) return null;
   return {
     apiKey,
-    baseUrl: (process.env.AI_BASE_URL || "https://api.deepseek.com").replace(/\/+$/, ""),
-    model: process.env.AI_MODEL || "deepseek-chat",
-    timeoutMs: Number(process.env.AI_TIMEOUT_MS || 20_000),
+    /* Trailing slashes stripped so the endpoint is always exactly
+       `${AI_BASE_URL}/chat/completions`. */
+    baseUrl: (process.env.AI_BASE_URL?.trim() || "https://api.deepseek.com").replace(/\/+$/, ""),
+    model: process.env.AI_MODEL?.trim() || "deepseek-chat",
+    timeoutMs: Number(process.env.AI_TIMEOUT_MS || 25_000),
   };
 }
 
@@ -39,6 +43,23 @@ export interface ModelPayload {
   answer: string;
   emotion: Emotion;
   suggestedQuestions: string[];
+}
+
+/**
+ * Outcome of one provider call.
+ *
+ * The previous version collapsed every failure into `null`, which is why a
+ * bypassed or failing call looked identical to a successful one from the
+ * outside. The caller now gets enough to log a cause.
+ */
+export interface ProviderResult {
+  content: string | null;
+  httpStatus: number | null;
+  durationMs: number;
+  failure: Extract<
+    FallbackReason,
+    "none" | "provider_request_failed" | "provider_http_error" | "provider_timeout"
+  >;
 }
 
 /**
@@ -78,35 +99,83 @@ export function parseModelPayload(raw: string): ModelPayload | null {
   return { answer, emotion, suggestedQuestions };
 }
 
-export async function completeChat(
+type Message = { role: "system" | "user"; content: string };
+
+function buildBody(config: ProviderConfig, messages: Message[], jsonMode: boolean) {
+  return JSON.stringify({
+    model: config.model,
+    messages,
+    temperature: 0.3,
+    max_tokens: 600,
+    ...(jsonMode ? { response_format: { type: "json_object" } } : {}),
+  });
+}
+
+async function post(
   config: ProviderConfig,
-  messages: { role: "system" | "user"; content: string }[],
-): Promise<string | null> {
+  messages: Message[],
+  jsonMode: boolean,
+): Promise<{ res: Response | null; timedOut: boolean }> {
   try {
     const res = await fetch(`${config.baseUrl}/chat/completions`, {
       method: "POST",
       headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${config.apiKey}`,
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${config.apiKey}`,
       },
-      body: JSON.stringify({
-        model: config.model,
-        messages,
-        temperature: 0.3,
-        max_tokens: 500,
-        response_format: { type: "json_object" },
-      }),
+      body: buildBody(config, messages, jsonMode),
       signal: AbortSignal.timeout(config.timeoutMs),
+      cache: "no-store",
     });
+    return { res, timedOut: false };
+  } catch (error) {
+    const timedOut =
+      error instanceof Error && (error.name === "TimeoutError" || error.name === "AbortError");
+    return { res: null, timedOut };
+  }
+}
 
-    if (!res.ok) return null;
-    const data = (await res.json()) as {
-      choices?: { message?: { content?: string } }[];
+export async function completeChat(
+  config: ProviderConfig,
+  messages: Message[],
+): Promise<ProviderResult> {
+  const startedAt = Date.now();
+
+  let { res, timedOut } = await post(config, messages, true);
+
+  /* Not every OpenAI-compatible model accepts response_format. A 400 on the
+     first attempt is far more likely to mean "this model has no JSON mode"
+     than "the request was malformed", so retry once without it rather than
+     silently degrading to the local answer. */
+  if (res && res.status === 400) {
+    ({ res, timedOut } = await post(config, messages, false));
+  }
+
+  const durationMs = Date.now() - startedAt;
+
+  if (!res) {
+    return {
+      content: null,
+      httpStatus: null,
+      durationMs,
+      failure: timedOut ? "provider_timeout" : "provider_request_failed",
     };
-    return data.choices?.[0]?.message?.content ?? null;
+  }
+
+  if (!res.ok) {
+    return { content: null, httpStatus: res.status, durationMs, failure: "provider_http_error" };
+  }
+
+  try {
+    const data = (await res.json()) as { choices?: { message?: { content?: string } }[] };
+    const content = data.choices?.[0]?.message?.content ?? null;
+    return {
+      content,
+      httpStatus: res.status,
+      durationMs,
+      failure: content ? "none" : "provider_http_error",
+    };
   } catch {
-    /* Timeout, network failure, malformed response — the caller degrades to
-       local retrieval, so a provider outage never takes the assistant down. */
-    return null;
+    return { content: null, httpStatus: res.status, durationMs, failure: "provider_request_failed" };
   }
 }
