@@ -76,6 +76,35 @@ export default function ProjectPreview({
         </g>
       )}
 
+      {kind === "ticket" && (
+        <g stroke={hot} fill="none" strokeWidth="1">
+          {[0, 1].map((i) => (
+            <g key={i} transform={`translate(${52 + i * 118} 46) rotate(${i ? 4 : -4} 84 54)`}>
+              <path d="M0 8 a8 8 0 0 1 8-8 h84 a8 8 0 0 1 8 8 v18 a10 10 0 0 0 0 20 v18 a8 8 0 0 1-8 8 h-84 a8 8 0 0 1-8-8 v-18 a10 10 0 0 0 0-20 z"
+                fill={hot} fillOpacity={i ? ".10" : ".22"} />
+              <path d="M22 18 h56 M22 30 h40" stroke={i ? cool : hot} opacity=".8" />
+            </g>
+          ))}
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <circle key={i} cx={40 + i * 48} cy={168} r="2" fill={cool} stroke="none" opacity=".6" />
+          ))}
+        </g>
+      )}
+
+      {kind === "layers" && (
+        <g fill="none" strokeWidth="1">
+          {[0, 1, 2, 3].map((i) => (
+            <g key={i} opacity={1 - i * 0.2}>
+              <rect x={58 + i * 12} y={30 + i * 30} width="150" height="24" rx="2"
+                stroke={i % 2 ? cool : hot} fill={hot} fillOpacity={i === 0 ? ".22" : ".05"} />
+              <path d={`M${66 + i * 12} ${42 + i * 30} h${60 - i * 6}`} stroke={i % 2 ? cool : hot} opacity=".7" />
+            </g>
+          ))}
+          <rect x="226" y="30" width="42" height="114" rx="4" stroke={cool} opacity=".7" />
+          <rect x="232" y="40" width="30" height="86" rx="2" fill={cool} fillOpacity=".16" stroke="none" />
+        </g>
+      )}
+
       {kind === "orbit" && (
         <g fill="none" stroke={hot} strokeWidth="1">
           <ellipse cx="160" cy="100" rx="104" ry="40" opacity=".55" />

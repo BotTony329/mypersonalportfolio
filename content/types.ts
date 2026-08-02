@@ -71,6 +71,23 @@ export interface StackBlock {
   layers: { k: string; body: string; tone: Accent }[];
 }
 
+/** Screenshots. Sized so the browser reserves the box and nothing shifts. */
+export interface MediaBlock {
+  kind: "media";
+  id: string;
+  label: string;
+  intro?: string;
+  /** "wide" for desktop mockups, "devices" for phone frames side by side. */
+  layout: "wide" | "devices";
+  items: {
+    src: string;
+    alt: string;
+    caption?: string;
+    width: number;
+    height: number;
+  }[];
+}
+
 /** A callout — confidentiality, verification status, scope limits. */
 export interface NoteBlock {
   kind: "note";
@@ -87,6 +104,7 @@ export type Block =
   | FlowBlock
   | FeatureBlock
   | StackBlock
+  | MediaBlock
   | NoteBlock;
 
 export type ProjectStatus = "active" | "completed" | "live";
@@ -127,8 +145,10 @@ export interface CaseStudy {
   contribution: string;
   role: string;
   snapshot: Snapshot;
-  /** Decorative preview built from CSS, so cards cost no image bytes. */
-  preview: "silicon" | "grid" | "wave" | "orbit";
+  /** Decorative preview built from SVG, so cards cost no image bytes. */
+  preview: "silicon" | "grid" | "wave" | "orbit" | "ticket" | "layers";
+  /** Shown on the homepage. The archive shows everything regardless. */
+  featured?: boolean;
   accent: Accent;
   blocks: Block[];
   /** Rendered as a footnote wherever the project is named. */

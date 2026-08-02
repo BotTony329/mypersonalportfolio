@@ -123,15 +123,24 @@ the whole scroll choreography survived the change of subject untouched.
 
 | Route | What it is |
 |---|---|
-| `/` | Cinematic overview: hero, positioning, four project cards, capabilities, Moo, about preview, contact |
-| `/work` | Mission archive — filterable database view of every case study |
+| `/` | Overview: hero, positioning, six featured projects, capabilities, Moo, journey preview, contact |
+| `/work` | Mission archive — filterable view of every case study |
 | `/work/ai-teacher-platform` | AI Teacher Growth Platform |
-| `/work/early-childhood-educator-os` | Early Childhood Educator OS |
 | `/work/enterprise-logistics-saas` | Enterprise Logistics SaaS |
+| `/work/product-discovery-feature-delivery` | Product Discovery & Feature Delivery |
+| `/work/digital-ticketing-experience` | Digital Ticketing Experience |
+| `/work/modular-landing-page-system` | Modular Landing Page System |
+| `/work/ux-design-evaluation` | UX Design Evaluation |
+| `/work/early-childhood-educator-os` | Early Childhood Educator OS |
 | `/work/calories-fitness-app` | Calories — Fitness Tracking App |
-| `/about` | Profile, approach, capabilities, strengths, experience |
+| `/journey` | The career arc, chronologically, plus the support thread that funded it |
+| `/lab` | Independent Product Lab — self-funded products and the cycle behind them |
+| `/about` | Profile, approach, capabilities, strengths, experience, education |
 | `/contact` | Contact detail and what Tony is available for |
 | `/api/chat` | Moo's model call — **server builds only**, see below |
+
+The first six case studies carry `featured: true` and appear on the homepage in
+that order. The archive shows everything.
 
 Every case study is prerendered via `generateStaticParams`, so direct URLs and
 refreshes work without a router fallback.
@@ -148,13 +157,17 @@ content/
   projects/
     index.ts               display order, lookup, prev/next, categories
     ai-teacher-platform.ts
-    early-childhood-educator-os.ts
     enterprise-logistics-saas.ts
+    product-discovery-feature-delivery.ts
+    digital-ticketing-experience.ts
+    modular-landing-page-system.ts
+    ux-design-evaluation.ts
+    early-childhood-educator-os.ts
     calories-fitness-app.ts
 ```
 
 Each project declares an ordered list of blocks — `prose`, `list`, `pillars`,
-`flow`, `features`, `stack`, `note` — and `components/case/Blocks.tsx` switches
+`flow`, `features`, `stack`, `media`, `note` — and `components/case/Blocks.tsx` switches
 on `kind`. **Adding a project is one content file plus one line in
 `index.ts`.** No component changes, no new route file.
 
@@ -163,7 +176,13 @@ Two rules hold across the whole directory:
 1. **No invented metrics.** Where a number was never verified the copy says
    what was intended or delivered, never what it achieved. Several case
    studies carry an explicit "On the numbers" note saying so.
-2. **No client identities.** Public sector labels only.
+2. **No client identities.** Public sector labels only. Employers Tony lists
+   publicly are named; their clients never are.
+3. **The narrative is fixed.** Information Systems → UX & product thinking →
+   enterprise digital transformation → business analysis → AI product
+   development → independent SaaS builder. Warehouse and forklift work is a
+   supporting thread that funded the learning — never the start of the career,
+   and never how Tony is defined. Nothing implies outside investment.
 
 ---
 
@@ -251,15 +270,25 @@ You can open `out/index.html` behind any static host.
 
 ## Deployment
 
-Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds the
-static export and publishes it to GitHub Pages. Nothing else to run.
+**Production is Vercel.** Import the repo at vercel.com and it deploys on every
+push to `main`. Vercel sets `VERCEL=1`, which switches `next.config.mjs` into
+server mode: `/api/chat` is included, so Moo can call a model, and there is no
+basePath because the site is served from the root.
 
-**Live:** https://bottony329.github.io/mypersonalportfolio/
+Add these in *Project → Settings → Environment Variables* (all optional — the
+site works without them):
 
-The workflow enables Pages on first run (`actions/configure-pages` with
-`enablement: true`), so there is no manual switch to flip in Settings. If the
-first run fails on permissions, set *Settings → Actions → General → Workflow
-permissions* to **Read and write**, then re-run it from the Actions tab.
+| Name | Value |
+|---|---|
+| `AI_API_KEY` | your model key |
+| `AI_BASE_URL` | `https://api.deepseek.com` |
+| `AI_MODEL` | `deepseek-chat` |
+
+**GitHub Pages is a static mirror, not production.** `.github/workflows/deploy.yml`
+still publishes a static export to https://bottony329.github.io/mypersonalportfolio/
+on every push. That build has no server, so `/api/chat` is excluded and Moo
+answers from the local knowledge index instead. Useful as a free fallback;
+not where the product lives.
 
 ### The basePath
 
@@ -351,3 +380,20 @@ viewports scale the whole path via `viewportScale()` rather than re-authoring it
 `tony-zhao-deep-field.html` — the entire experience as one self-contained file
 with Three.js, GSAP and the fonts inlined. No build step, no server, no network.
 Useful for emailing, USB handoff, or opening on a machine with nothing installed.
+
+
+---
+
+## Known issue: Next.js version
+
+The project is pinned to `next@14.2.33`. `npm audit` reports advisories against
+the 14.x line whose only fix path is a major upgrade to Next 16.
+
+Every one of those advisories concerns server-side behaviour — Server
+Components, the image optimizer, rewrites, middleware, Server Actions. The
+GitHub Pages build is a static export with none of those, so its exposure is
+nil. **The Vercel deployment does run a server**, so the upgrade matters there.
+
+It is deliberately not bundled into a feature commit: a 14 → 16 major upgrade
+touches the App Router, `next/font`, the `pageExtensions` export switch and the
+static export path, and deserves its own branch and its own verification pass.

@@ -15,6 +15,7 @@ export const aiTeacherPlatform: CaseStudy = {
   role: "Business Analyst & AI Product Designer",
   preview: "silicon",
   accent: "orange",
+  featured: true,
   snapshot: {
     role: "Business Analyst & AI Product Designer",
     projectType: "AI product · web platform · education technology",

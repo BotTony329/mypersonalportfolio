@@ -35,6 +35,26 @@ const PER_PROJECT: Record<string, string[]> = {
     "What design decisions shaped Calories?",
     "What is not documented about that project?",
   ],
+  "product-discovery-feature-delivery": [
+    "What did Tony do at Syaila?",
+    "How were the two modules specified?",
+    "When does Tony use A/B testing?",
+  ],
+  "digital-ticketing-experience": [
+    "How does the ticketing app personalise events?",
+    "What was Tony's design process here?",
+    "What is not documented about this project?",
+  ],
+  "modular-landing-page-system": [
+    "What makes the landing pages a system?",
+    "What structure do the landing pages follow?",
+    "Which products used this system?",
+  ],
+  "ux-design-evaluation": [
+    "How did Tony run the usability evaluation?",
+    "Why both moderated and unmoderated testing?",
+    "What were the findings?",
+  ],
 };
 
 const pick = (list: string[], n: number) => list.slice(0, n);
@@ -58,6 +78,22 @@ export function suggestionsFor(path = "/"): string[] {
       "How does Tony approach a new project?",
       "What tools and methods does Tony use?",
       "How can I get in touch with Tony?",
+    ];
+  }
+  if (path.startsWith("/journey")) {
+    return [
+      "What is Tony's career path?",
+      "What did Tony study?",
+      "How did Tony fund his independent products?",
+      "What does Tony do now?",
+    ];
+  }
+  if (path.startsWith("/lab")) {
+    return [
+      "What has Tony built independently?",
+      "How were the independent products funded?",
+      "What is the Early Childhood Educator OS?",
+      "What does building alone teach you?",
     ];
   }
   if (path.startsWith("/contact")) {

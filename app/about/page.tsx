@@ -85,9 +85,27 @@ export default function AboutPage() {
                 <span className="cs-step-rail" aria-hidden><i className="cs-step-dot" /></span>
                 <span className="cs-step-body">
                   <span className="cs-step-n mono">{e.period}</span>
-                  <Link className="cs-step-name link" href={e.href}>{e.title} →</Link>
+                  {e.href
+                    ? <Link className="cs-step-name link" href={e.href}>{e.title} →</Link>
+                    : <span className="cs-step-name">{e.title}</span>}
                   <span className="mono cs-step-role">{e.role}</span>
                   <span className="small">{e.body}</span>
+                </span>
+              </Reveal>
+            ))}
+          </ol>
+        </section>
+
+        <section className="cs-block" id="education">
+          <Reveal as="h2" className="cs-h2">Education</Reveal>
+          <ol className="cs-flow timeline">
+            {ABOUT.education.map((e, i) => (
+              <Reveal as="li" key={e.title} delay={Math.min(i, 5) * 0.05} className="cs-step">
+                <span className="cs-step-rail" aria-hidden><i className="cs-step-dot" /></span>
+                <span className="cs-step-body">
+                  <span className="cs-step-n mono">{e.period}</span>
+                  <span className="cs-step-name">{e.title}</span>
+                  <span className="mono cs-step-role">{e.org}</span>
                 </span>
               </Reveal>
             ))}
@@ -96,7 +114,8 @@ export default function AboutPage() {
       </div>
 
       <nav className="cs-onward wrap" aria-label="Continue">
-        <Link className="cs-back" href="/work">← All work</Link>
+        <Link className="cs-back" href="/journey">← The journey</Link>
+        <Link className="cta ghost" href="/lab"><i /><span>Product Lab →</span></Link>
         <Link className="cta" href="/contact"><i /><span>Start a conversation →</span></Link>
       </nav>
     </PageShell>

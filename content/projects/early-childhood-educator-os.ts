@@ -9,7 +9,7 @@ import type { CaseStudy } from "../types";
  */
 export const earlyChildhoodEducatorOs: CaseStudy = {
   slug: "early-childhood-educator-os",
-  mission: "03",
+  mission: "07",
   title: "Early Childhood Educator OS",
   titleLines: ["Early Childhood", "Educator OS"],
   summary:

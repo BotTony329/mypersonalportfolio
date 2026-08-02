@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Reveal from "../primitives/Reveal";
+import { withBasePath } from "@/lib/basePath";
 import type { Block } from "@/content/types";
 
 /**
@@ -116,6 +118,34 @@ export default function BlockRenderer({ block }: { block: Block }) {
                   <h3 className="cs-layer-k mono">{l.k}</h3>
                   <p className="small">{l.body}</p>
                 </article>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      );
+
+    case "media":
+      return (
+        <section className="cs-block" id={block.id}>
+          <Head label={block.label} intro={block.intro} />
+          <div className={`cs-media ${block.layout}`}>
+            {block.items.map((m, i) => (
+              <Reveal key={m.src} delay={Math.min(i, 4) * 0.06}>
+                <figure className="cs-shot">
+                  <Image
+                    src={withBasePath(m.src)}
+                    alt={m.alt}
+                    width={m.width}
+                    height={m.height}
+                    /* Below the fold on every case study, and the intrinsic
+                       size reserves the box so nothing shifts on load. */
+                    loading="lazy"
+                    sizes={block.layout === "wide"
+                      ? "(max-width: 900px) 100vw, 50vw"
+                      : "(max-width: 700px) 80vw, 320px"}
+                  />
+                  {m.caption ? <figcaption className="small">{m.caption}</figcaption> : null}
+                </figure>
               </Reveal>
             ))}
           </div>

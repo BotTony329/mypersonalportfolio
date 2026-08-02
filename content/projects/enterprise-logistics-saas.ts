@@ -15,6 +15,7 @@ export const enterpriseLogisticsSaas: CaseStudy = {
   role: "Business Analyst",
   preview: "grid",
   accent: "cyan",
+  featured: true,
   snapshot: {
     role: "Business Analyst",
     projectType: "Enterprise SaaS · cross-organisation digital transformation",

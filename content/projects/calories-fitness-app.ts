@@ -18,7 +18,7 @@ import type { CaseStudy } from "../types";
  */
 export const caloriesFitnessApp: CaseStudy = {
   slug: "calories-fitness-app",
-  mission: "04",
+  mission: "08",
   title: "Calories — Fitness Tracking App",
   titleLines: ["Calories", "Fitness App"],
   summary:

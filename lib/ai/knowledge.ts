@@ -1,5 +1,5 @@
 import { PROJECTS } from "@/content/projects";
-import { ABOUT, IDENTITY, POSITIONING, SKILLS } from "@/lib/content";
+import { ABOUT, IDENTITY, JOURNEY, LAB, POSITIONING, SKILLS } from "@/lib/content";
 import type { Block } from "@/content/types";
 
 /**
@@ -34,6 +34,8 @@ function blockToText(block: Block): string {
     case "flow": return [block.intro, ...block.steps.map((s) => `${s.name}: ${s.desc}`)].filter(Boolean).join(" ");
     case "features": return [block.intro, ...block.items.map((i) => `${i.name}: ${i.desc}`)].filter(Boolean).join(" ");
     case "stack": return [block.intro, ...block.layers.map((l) => `${l.k}: ${l.body}`)].filter(Boolean).join(" ");
+    /* Alt text and captions are the only words a screenshot contributes. */
+    case "media": return [block.intro, ...block.items.map((m) => m.caption ?? m.alt)].filter(Boolean).join(" ");
     case "note": return block.body;
   }
 }
@@ -71,6 +73,46 @@ function buildIndex(): Passage[] {
     section: "Skills",
     text: SKILLS.map((s) => `${s.name} — ${s.note}`).join(". "),
     keywords: ["skills", "strengths", "expertise"],
+  });
+
+  out.push({
+    title: "Education",
+    href: "/about",
+    section: "Education",
+    text: ABOUT.education.map((e) => `${e.title}, ${e.org} (${e.period})`).join(". "),
+    keywords: ["education", "degree", "study", "studies", "studied", "university", "masters", "bachelor", "degrees", "qualification", "qualifications", "certification", "school"],
+  });
+
+  out.push({
+    title: "Experience",
+    href: "/about",
+    section: "Experience",
+    text: ABOUT.experience.map((e) => `${e.period} — ${e.title} at ${e.role}: ${e.body}`).join(" "),
+    keywords: ["experience", "roles", "jobs", "worked", "employer", "career history", "syaila", "sketchli", "freelance", "consultant"],
+  });
+
+  out.push({
+    title: "Journey",
+    href: "/journey",
+    section: "Career path",
+    text: `${JOURNEY.lede} The arc runs ${JOURNEY.arc.join(" then ")}. ${JOURNEY.primary.map((s2) => `${s2.period}: ${s2.title} at ${s2.org} — ${s2.body}`).join(" ")}`,
+    keywords: ["journey", "path", "career", "timeline", "how did tony get here", "progression", "story"],
+  });
+
+  out.push({
+    title: "Journey",
+    href: "/journey",
+    section: "How it was funded",
+    text: `${JOURNEY.support.lede} ${JOURNEY.support.steps.map((s2) => `${s2.name}: ${s2.desc}`).join(" ")} ${JOURNEY.support.note}`,
+    keywords: ["forklift", "warehouse", "funded", "funding", "fund", "self-funded", "part-time", "pay", "paid", "investment", "investor", "money", "independence"],
+  });
+
+  out.push({
+    title: "Independent Product Lab",
+    href: "/lab",
+    section: "Independent products",
+    text: `${LAB.lede} Cycle: ${LAB.cycle.map((c) => `${c.k} — ${c.body}`).join(" ")} Products: ${LAB.products.map((pr) => `${pr.k} (${pr.status}): ${pr.body}`).join(" ")} ${LAB.principles.map((pr) => `${pr.k}: ${pr.body}`).join(" ")}`,
+    keywords: ["lab", "independent", "side projects", "etsy", "shopify", "e-commerce", "saas", "built alone", "own products", "driftdecostudio"],
   });
 
   out.push({
@@ -132,7 +174,12 @@ export function retrieve(question: string, limit = 5): Passage[] {
     let score = 0;
     terms.forEach((t) => {
       if (haystack.includes(t)) score += 1;
-      if (p.keywords.some((k) => k.includes(t))) score += 1.5;
+      /* An exact keyword hit is a much stronger signal than a substring
+         appearing somewhere in a long passage — without this, "what did Tony
+         study?" matched the phrase "case study" in half the corpus and lost
+         to prose that merely contained the word. */
+      if (p.keywords.includes(t)) score += 4;
+      else if (p.keywords.some((k) => k.includes(t))) score += 1.5;
       if (p.title.toLowerCase().includes(t)) score += 1.5;
       if (p.section.toLowerCase().includes(t)) score += 1;
     });

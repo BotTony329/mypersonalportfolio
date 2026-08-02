@@ -1,0 +1,195 @@
+import type { CaseStudy } from "../types";
+
+export const productDiscoveryFeatureDelivery: CaseStudy = {
+  slug: "product-discovery-feature-delivery",
+  mission: "03",
+  title: "Product Discovery & Feature Delivery",
+  titleLines: ["Product Discovery", "& Feature Delivery"],
+  summary:
+    "Business requirement analysis for new product modules added to an existing digital platform, from kick-off through analysis, development collaboration, testing and release.",
+  categories: ["Enterprise SaaS", "UX & Product Design"],
+  year: "2024 — 2025",
+  status: "completed",
+  statusLabel: "Completed · Two modules released",
+  contribution: "Requirement analysis and module planning for two production releases",
+  role: "Digital Product Designer",
+  preview: "grid",
+  accent: "cyan",
+  featured: true,
+  snapshot: {
+    role: "Digital Product Designer — Syaila Pty Ltd",
+    projectType: "New product modules within an existing digital platform",
+    timeline: "Aug 2024 — Aug 2025",
+    tools: ["Figma", "Sketch", "Requirement documentation", "Module planning", "Functional test cases", "A/B testing"],
+    team: "Consultants, client stakeholders and an IT development team — I contributed the analysis, prototypes and specification",
+    status: "Two modules released to production",
+  },
+  seoDescription:
+    "Business requirement analysis and module planning for two new product modules delivered into an existing digital platform, covering discovery, development collaboration, functional testing, UX A/B testing and release.",
+  blocks: [
+    {
+      kind: "note",
+      id: "confidentiality",
+      label: "Confidentiality",
+      tone: "cyan",
+      body: "The work was delivered as a Digital Product Designer at Syaila Pty Ltd, a consultancy. The end client and their platform are described generically — this case study covers the work and the process, not the client.",
+    },
+    {
+      kind: "prose",
+      id: "context",
+      label: "Context",
+      body: [
+        "An existing digital platform already had users, an established codebase and a working set of features. The task was not to build something new from nothing but to add new modules into a system with its own history, conventions and constraints.",
+        "That is a different discipline from greenfield work. Every proposed feature has to be reconciled with what already exists — the data the platform already holds, the patterns users have already learnt, and the assumptions the codebase already encodes.",
+      ],
+    },
+    {
+      kind: "pillars",
+      id: "problem",
+      label: "Problem",
+      items: [
+        {
+          k: "Vision to specification",
+          tone: "orange",
+          body: "Product direction arrived as intent rather than requirement. Turning that into modules a development team could estimate and build was the core of the work.",
+        },
+        {
+          k: "Fitting into what exists",
+          tone: "cyan",
+          body: "New modules had to sit inside an existing platform without contradicting its data model or retraining its users.",
+        },
+        {
+          k: "Deciding what to prove",
+          tone: "cyan",
+          body: "Some design questions had defensible answers on both sides, which meant deciding what to settle by judgement and what to settle by testing.",
+        },
+      ],
+    },
+    {
+      kind: "list",
+      id: "objectives",
+      label: "Objectives",
+      items: [
+        "Translate product vision into scoped, buildable module requirements",
+        "Keep new functionality coherent with the existing platform",
+        "Give the development team specifications precise enough to build without guessing",
+        "Validate design decisions with evidence where opinion alone was not enough",
+        "Support the modules through testing and into production",
+      ],
+    },
+    {
+      kind: "prose",
+      id: "role",
+      label: "My role",
+      body: [
+        "I worked as a Digital Product Designer, sitting between the consultants and client stakeholders who held the product vision and the IT developers who had to build against something concrete. In practice the role was as much business analysis as interface design — the modules had to be understood before they could be drawn.",
+        "This was team delivery. My contribution was the discovery and specification layer: understanding the intent, prototyping it so people could react to it, planning the modules, working through the questions developers raised, and staying with the work through testing and release.",
+      ],
+    },
+    {
+      kind: "list",
+      id: "responsibilities",
+      label: "Responsibilities",
+      dense: true,
+      intro: "The precise scope of what I did.",
+      items: [
+        "Worked closely with consultants and clients to gather project insights",
+        "Attended production kick-off meetings",
+        "Developed an understanding of the product vision",
+        "Discussed concepts with the product manager",
+        "Analysed business requirements",
+        "Designed prototypes in Figma and sketched concepts accordingly",
+        "Presented prototypes to clients",
+        "Planned new application modules",
+        "Collaborated with IT developers",
+        "Supported implementation",
+        "Conducted functional testing",
+        "Ran UX A/B testing",
+        "Supported deployment",
+        "Contributed to the successful release of two production modules",
+      ],
+    },
+    {
+      kind: "prose",
+      id: "discovery",
+      label: "Discovery & analysis",
+      body: [
+        "Discovery started in the kick-off meetings and continued in conversation with the product manager. The useful questions were rarely about features — they were about intent. What is this module supposed to change about a user's day? Answering that first stops a requirement list from becoming a wish list.",
+        "From there the work was decomposition: taking a described capability and breaking it into modules with clear boundaries, each with its own data, states and rules. Boundaries drawn well at this stage are what let two modules ship independently rather than as one entangled release.",
+      ],
+    },
+    {
+      kind: "prose",
+      id: "solution",
+      label: "Solution",
+      body: [
+        "Two new application modules, specified as distinct units of functionality and integrated into the existing platform rather than bolted onto it.",
+        "The specification work continued through the build. Developers raise questions that analysis did not anticipate, and treating those as specification updates rather than side conversations is what keeps the delivered system and the agreed design the same thing.",
+      ],
+    },
+    {
+      kind: "flow",
+      id: "process",
+      label: "Delivery process",
+      variant: "timeline",
+      steps: [
+        { name: "Production kick-off", desc: "Attended kick-off meetings to understand what was being asked for and why it mattered now." },
+        { name: "Product vision", desc: "Developed an understanding of the intent behind the request, discussed directly with the product manager." },
+        { name: "Requirement analysis", desc: "Analysed the business requirements and identified what the platform would need to support them." },
+        { name: "Module planning", desc: "Planned the new application modules with clear boundaries, so they could be built and released independently." },
+        { name: "Development collaboration", desc: "Worked alongside the IT developers, resolving the questions that only surface once someone starts building." },
+        { name: "Implementation support", desc: "Stayed available through the build to keep decisions consistent with the agreed specification." },
+        { name: "Functional testing", desc: "Tested the modules against the requirements rather than against the interface." },
+        { name: "UX A/B testing", desc: "Where a design decision could reasonably go either way, tested it rather than arguing it." },
+        { name: "Deployment", desc: "Supported the release of both modules into production." },
+      ],
+    },
+    {
+      kind: "prose",
+      id: "testing",
+      label: "Testing & iteration",
+      body: [
+        "Two kinds of testing did two different jobs. Functional testing asked whether the module did what the specification said. A/B testing asked whether the specification was the right one — a question functional testing cannot answer no matter how thorough it is.",
+        "Using A/B testing selectively also kept it credible. Testing everything produces noise and delay; testing the genuinely contested decisions produces answers people accept.",
+      ],
+    },
+    {
+      kind: "pillars",
+      id: "outcome",
+      label: "Delivery outcome",
+      items: [
+        {
+          k: "Two modules in production",
+          tone: "orange",
+          body: "Both new modules were released successfully into the existing platform.",
+        },
+        {
+          k: "Evidence-backed decisions",
+          tone: "cyan",
+          body: "Contested design choices went to A/B testing rather than being settled by seniority.",
+        },
+        {
+          k: "Analysis through to release",
+          tone: "cyan",
+          body: "The same person who wrote the requirements tested them and supported the deployment.",
+        },
+      ],
+    },
+    {
+      kind: "note",
+      id: "verification",
+      label: "On the numbers",
+      tone: "cyan",
+      body: "No usage, conversion or A/B test result figures are published for this engagement. The outcome above describes what was released, not measured business results.",
+    },
+    {
+      kind: "prose",
+      id: "lessons",
+      label: "Lessons learned",
+      body: [
+        "Adding to an existing product is constrained in a way greenfield work is not, and the constraint is useful. The platform's existing patterns answer a lot of design questions for free — the discipline is noticing when you are inheriting a good decision versus inheriting an old one.",
+        "Knowing that I would personally run the functional tests changed how I wrote requirements. It is very hard to write a vague acceptance criterion when you know you will be the one trying to test it.",
+      ],
+    },
+  ],
+};

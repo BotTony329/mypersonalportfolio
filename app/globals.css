@@ -849,3 +849,86 @@ a.cs-step-name:hover{color:var(--orange);}
   .archive-row:hover{padding-left:16px;}
   .pcard-link:hover{transform:none;}
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   JOURNEY · PRODUCT LAB · CASE-STUDY MEDIA
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── the capability arc ─────────────────────────────────────────────────── */
+.arc{margin-top:clamp(24px,3.5vw,44px);}
+.arc-list{display:flex;flex-wrap:wrap;gap:10px 0;list-style:none;align-items:stretch;}
+.arc-node{display:flex;align-items:center;gap:9px;padding:10px 16px 10px 13px;
+  border:1px solid var(--line);background:rgba(8,13,26,.5);font-size:9.5px;
+  letter-spacing:.16em;color:var(--ink-dim);position:relative;}
+.arc-node + .arc-node{margin-left:10px;}
+.arc-node + .arc-node::before{content:"→";position:absolute;left:-16px;top:50%;
+  transform:translateY(-50%);color:var(--orange);opacity:.7;font-size:11px;}
+.arc-n{color:var(--orange);font-size:8.5px;}
+@media(max-width:720px){
+  .arc-list{flex-direction:column;align-items:flex-start;gap:18px;}
+  .arc-node + .arc-node{margin-left:0;}
+  .arc-node + .arc-node::before{left:50%;top:-14px;transform:translateX(-50%) rotate(90deg);}
+}
+
+/* ── journey timeline ───────────────────────────────────────────────────── */
+.journey-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px;}
+.journey-phase{font-size:8.5px;letter-spacing:.2em;color:var(--ink-faint);
+  border:1px solid var(--line);padding:3px 8px;}
+
+/* ── the support thread — deliberately quieter than the career timeline ── */
+.support{position:relative;}
+.support::before{content:"";position:absolute;inset:0 -24px;border:1px dashed var(--line);
+  border-left-width:2px;border-left-style:solid;border-left-color:rgba(255,122,26,.4);
+  pointer-events:none;}
+@media(max-width:720px){.support::before{inset:0 -12px;}}
+.support-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  gap:clamp(24px,4vw,54px);align-items:center;}
+@media(max-width:900px){.support-grid{grid-template-columns:1fr;}}
+.support-chain{list-style:none;display:flex;flex-direction:column;gap:clamp(12px,1.6vw,18px);
+  margin-top:clamp(18px,2.4vw,28px);}
+.support-step{display:grid;grid-template-columns:34px 1fr;gap:12px;}
+.support-step > span:last-child{display:flex;flex-direction:column;gap:4px;}
+.support-step strong{font-weight:500;font-size:15px;color:var(--ink);}
+.support-n{font-size:9px;color:var(--orange);padding-top:4px;}
+.support-note{margin-top:clamp(18px,2.4vw,26px);padding:12px 15px;
+  border-left:2px solid var(--orange);background:rgba(255,122,26,.05);}
+.support-figure{margin:0;}
+.support-figure img{width:100%;height:auto;display:block;
+  filter:drop-shadow(0 24px 50px rgba(0,0,0,.6));}
+.support-figure figcaption{margin-top:14px;text-align:center;}
+
+/* ── product lab ────────────────────────────────────────────────────────── */
+.cycle{list-style:none;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));
+  gap:clamp(12px,1.6vw,18px);counter-reset:none;}
+.cycle-step{padding:clamp(16px,2vw,22px);border:1px solid var(--line);
+  background:rgba(8,13,26,.4);border-top:2px solid rgba(255,122,26,.5);
+  display:flex;flex-direction:column;gap:7px;}
+.cycle-step:nth-child(even){border-top-color:rgba(77,163,255,.5);}
+.cycle-n{font-size:9px;color:var(--ink-faint);letter-spacing:.2em;}
+.cycle-k{font-size:clamp(16px,1.6vw,20px);font-weight:500;}
+.lab-card{display:flex;flex-direction:column;gap:8px;text-decoration:none;color:inherit;}
+a.lab-card:hover{border-color:var(--orange);}
+.lab-status{font-size:8.5px;letter-spacing:.2em;color:var(--blue);}
+.lab-go{font-size:9px;letter-spacing:.2em;color:var(--orange);margin-top:auto;padding-top:8px;}
+
+/* ── case-study screenshots ─────────────────────────────────────────────── */
+.cs-media{display:grid;gap:clamp(18px,2.6vw,34px);}
+.cs-media.wide{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));}
+.cs-media.devices{grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));
+  justify-items:center;max-width:780px;}
+.cs-shot{margin:0;display:flex;flex-direction:column;gap:12px;}
+.cs-shot img{width:100%;height:auto;display:block;
+  filter:drop-shadow(0 22px 46px rgba(0,0,0,.55));}
+.cs-media.devices .cs-shot img{max-width:300px;margin:0 auto;}
+.cs-shot figcaption{color:var(--ink-faint);}
+
+@media(prefers-reduced-motion:reduce){
+  .arc-node,.cycle-step{transition:none;}
+}
+
+/* Content scrolling under a transparent fixed nav collided with the logo on
+   long case studies. A soft scrim keeps both readable without adding a bar. */
+.hud-top::before{content:"";position:absolute;inset:-14px 0 auto 0;height:calc(100% + 34px);
+  background:linear-gradient(180deg,rgba(4,6,15,.92) 0%,rgba(4,6,15,.72) 55%,transparent 100%);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:-1;pointer-events:none;}

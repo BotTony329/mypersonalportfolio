@@ -2,8 +2,8 @@ import Link from "next/link";
 import Reveal from "../primitives/Reveal";
 import SplitHeading from "../primitives/SplitHeading";
 import ProjectCard from "../cards/ProjectCard";
-import { PROJECTS } from "@/content/projects";
-import { ABOUT, POSITIONING } from "@/lib/content";
+import { FEATURED } from "@/content/projects";
+import { ABOUT, JOURNEY, POSITIONING } from "@/lib/content";
 
 /**
  * Homepage sections below the hero.
@@ -48,13 +48,13 @@ export function SelectedMissions() {
           <Reveal as="p" className="eyebrow">Selected Missions</Reveal>
           <SplitHeading lines={["Mission Control"]} />
           <Reveal as="p" className="lede">
-            Four programmes across AI products, enterprise SaaS and product design.
+            Six programmes across AI products, enterprise SaaS and product design.
             Each one starts as an ambiguous problem and ends as a system people use.
           </Reveal>
         </div>
 
         <div className="pcards">
-          {PROJECTS.map((p, i) => (
+          {FEATURED.map((p, i) => (
             <Reveal key={p.slug} delay={Math.min(i, 4) * 0.07}>
               <ProjectCard project={p} />
             </Reveal>
@@ -120,10 +120,21 @@ export function AboutPreview() {
       <span className="sec-num" aria-hidden>05</span>
       <div className="wrap">
         <div className="sec-head">
-          <Reveal as="p" className="eyebrow">About</Reveal>
+          <Reveal as="p" className="eyebrow">The Journey</Reveal>
           <SplitHeading lines={ABOUT.heading} />
           <Reveal as="p" className="lede">{ABOUT.lede}</Reveal>
         </div>
+
+        <Reveal className="arc" delay={0.06}>
+          <ol className="arc-list mono">
+            {JOURNEY.arc.map((phase, i) => (
+              <li key={phase} className="arc-node">
+                <span className="arc-n">{String(i + 1).padStart(2, "0")}</span>
+                <span>{phase}</span>
+              </li>
+            ))}
+          </ol>
+        </Reveal>
 
         <div className="about-preview-grid">
           {ABOUT.approach.slice(0, 3).map((a, i) => (
@@ -137,7 +148,10 @@ export function AboutPreview() {
         </div>
 
         <Reveal className="section-cta" delay={0.1}>
-          <Link className="cta ghost" href="/about"><i /><span>Full profile →</span></Link>
+          <>
+            <Link className="cta ghost" href="/journey"><i /><span>The full journey →</span></Link>
+            <Link className="cta ghost" href="/lab"><i /><span>Independent Product Lab →</span></Link>
+          </>
         </Reveal>
       </div>
     </section>
