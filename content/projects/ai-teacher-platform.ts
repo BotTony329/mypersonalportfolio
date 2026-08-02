@@ -2,7 +2,7 @@ import type { CaseStudy } from "../types";
 
 export const aiTeacherPlatform: CaseStudy = {
   slug: "ai-teacher-platform",
-  mission: "01",
+  mission: "02",
   title: "AI Teacher Growth Platform",
   titleLines: ["AI Teacher", "Growth Platform"],
   summary:
@@ -310,13 +310,6 @@ export const aiTeacherPlatform: CaseStudy = {
           body: "Potential operational benefit: developmental feedback that no longer consumes another experienced teacher's hour per lesson.",
         },
       ],
-    },
-    {
-      kind: "note",
-      id: "verification",
-      label: "On the numbers",
-      tone: "cyan",
-      body: "This platform is in active development. Everything above describes intended value and product objectives — there are no adoption, performance or outcome figures to report yet, and none are claimed.",
     },
     {
       kind: "prose",

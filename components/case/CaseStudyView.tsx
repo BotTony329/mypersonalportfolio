@@ -20,13 +20,17 @@ export default function CaseStudyView({
   next?: CaseStudy;
 }) {
   const s = study.snapshot;
-  const snapshotRows: [string, string][] = [
+  /* Absent fields drop out entirely rather than rendering an empty or
+     apologetic row. */
+  const snapshotRows = ([
     ["Role", s.role],
     ["Project type", s.projectType],
     ["Timeline", s.timeline],
     ["Team", s.team],
     ["Status", s.status],
-  ];
+  ] as [string, string | undefined][]).filter(
+    (row): row is [string, string] => Boolean(row[1]),
+  );
 
   return (
     <article className={`case accent-${study.accent}`}>
@@ -61,12 +65,14 @@ export default function CaseStudyView({
               </div>
             ))}
           </dl>
-          <div className="cs-snap-tools">
-            <h3 className="mono cs-snap-tools-k">Tools & methods</h3>
-            <ul className="cs-tools">
-              {s.tools.map((t) => <li className="tag" key={t}>{t}</li>)}
-            </ul>
-          </div>
+          {s.tools?.length ? (
+            <div className="cs-snap-tools">
+              <h3 className="mono cs-snap-tools-k">Tools &amp; methods</h3>
+              <ul className="cs-tools">
+                {s.tools.map((t) => <li className="tag" key={t}>{t}</li>)}
+              </ul>
+            </div>
+          ) : null}
         </div>
       </section>
 

@@ -110,6 +110,7 @@ export type Block =
 export type ProjectStatus = "active" | "completed" | "live";
 
 export const CATEGORIES = [
+  "Enterprise Consulting",
   "AI Products",
   "Enterprise SaaS",
   "UX & Product Design",
@@ -118,14 +119,20 @@ export const CATEGORIES = [
 
 export type Category = (typeof CATEGORIES)[number];
 
-/** The at-a-glance panel at the top of every case study. */
+/**
+ * The at-a-glance panel at the top of every case study.
+ *
+ * Everything except `role` is optional. A project that cannot state a timeline
+ * simply omits the row — the renderer skips absent fields, so the panel never
+ * has to announce what it does not know.
+ */
 export interface Snapshot {
   role: string;
-  projectType: string;
-  timeline: string;
-  tools: string[];
-  team: string;
-  status: string;
+  projectType?: string;
+  timeline?: string;
+  tools?: string[];
+  team?: string;
+  status?: string;
 }
 
 export interface CaseStudy {
@@ -138,7 +145,8 @@ export interface CaseStudy {
   /** One sentence, used on cards and in the assistant's knowledge base. */
   summary: string;
   categories: Category[];
-  year: string;
+  /** Omitted when a project has no publishable date. */
+  year?: string;
   status: ProjectStatus;
   statusLabel: string;
   /** The single most important thing Tony did — shown on cards. */
@@ -146,7 +154,7 @@ export interface CaseStudy {
   role: string;
   snapshot: Snapshot;
   /** Decorative preview built from SVG, so cards cost no image bytes. */
-  preview: "silicon" | "grid" | "wave" | "orbit" | "ticket" | "layers";
+  preview: "silicon" | "grid" | "wave" | "orbit" | "ticket" | "layers" | "graph" | "arch";
   /** Shown on the homepage. The archive shows everything regardless. */
   featured?: boolean;
   accent: Accent;

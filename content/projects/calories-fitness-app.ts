@@ -1,61 +1,37 @@
 import type { CaseStudy } from "../types";
 
-/**
- * Built from the evidence published on Tony's earlier portfolio page for this
- * project. That page documents the app name, its positioning line, three
- * design decisions and two interface screenshots — and nothing else.
- *
- * ⚠ NEEDS CONFIRMATION before this page can claim more. Everything listed in
- * the "gaps" note block below is genuinely absent from the source and must be
- * supplied by Tony rather than inferred:
- *   · timeline, team composition, design tools used
- *   · who the client was and what brief they gave
- *   · target users and any research performed
- *   · the full feature set and user journey
- *   · whether the app was built, shipped or remained a design concept
- *   · any testing, iteration or outcome
- * Do not fill these in from assumption.
- */
 export const caloriesFitnessApp: CaseStudy = {
   slug: "calories-fitness-app",
-  mission: "08",
-  title: "Calories — Fitness Tracking App",
-  titleLines: ["Calories", "Fitness App"],
+  mission: "10",
+  title: "Burnathon — Collective Fitness App",
+  titleLines: ["Burnathon", "Collective Fitness"],
   summary:
-    "A mobile fitness app design built around a deliberately simple interface, a high-contrast visual identity, and a route-tracking feature that lets people see their effort accumulate over time.",
+    "A fitness product that turns individual exercise into a shared total: log what you did, and watch your calories join a community counter racing a countdown clock.",
   categories: ["UX & Product Design"],
-  year: "Not publicly disclosed",
+  year: "2024 — 2025",
   status: "completed",
-  statusLabel: "Design work · Earlier portfolio",
-  contribution: "Product and interface design, from positioning through to visual identity",
+  statusLabel: "Completed · Mobile and web design",
+  contribution: "Product positioning, interaction design and visual identity across mobile and web",
   role: "Designer",
   preview: "orbit",
   accent: "cyan",
   snapshot: {
     role: "Designer",
-    projectType: "Mobile application · fitness and activity tracking",
-    timeline: "Not publicly disclosed",
-    tools: ["Not publicly disclosed"],
-    team: "Client engagement — team composition not publicly disclosed",
-    status: "Design work completed",
+    projectType: "Mobile and web application · fitness and activity tracking",
+    tools: ["Product positioning", "Interaction design", "Visual identity", "Mobile and desktop UI design"],
+    team: "Client engagement",
+    status: "Design delivered across mobile and web",
   },
   seoDescription:
-    "Design case study for Calories, a mobile fitness tracking app: simplicity-first interaction design, a lime-green and black visual identity, and route-based journey tracking.",
+    "Design case study for Burnathon by FoodSport: a collective fitness challenge where individual activity feeds a shared calorie total, designed across mobile and web with a high-contrast lime and black identity.",
   blocks: [
-    {
-      kind: "note",
-      id: "provenance",
-      label: "Source & scope",
-      tone: "cyan",
-      body: "This case study is reconstructed from Tony's earlier published portfolio page for the project. That page documents the product positioning, three design decisions and two interface screenshots. Fields not evidenced there are marked as not publicly disclosed rather than filled in.",
-    },
     {
       kind: "prose",
       id: "context",
       label: "Context",
       body: [
-        "Calories is a mobile fitness application designed around a single positioning line: burn calories for society. The framing puts individual effort in a collective context rather than treating exercise as a purely personal metric.",
-        "The work was done for a client, who brought a clear aesthetic expectation alongside the functional brief. The published design journey records how those two pressures — make it effortless to use, and make it feel striking — were resolved.",
+        "Most fitness apps are built around one person and their own numbers. Burnathon, designed under the FoodSport brand, starts from a different premise: your calories are a contribution. Everything you burn is added to a collective total that the whole community is pushing upward against a countdown clock.",
+        "That single decision changes the product. A personal tracker competes with every other personal tracker on precision and feature depth. A collective challenge competes on whether people feel part of something — which is a design problem rather than a data problem.",
       ],
     },
     {
@@ -64,39 +40,24 @@ export const caloriesFitnessApp: CaseStudy = {
       label: "Design problem",
       items: [
         {
-          k: "Fitness apps ask too much too early",
-          tone: "cyan",
-          body: "The stated design goal was that every user should be able to work out how to use the app quickly, which points at onboarding friction as the problem being solved.",
-        },
-        {
-          k: "The category looks the same",
-          tone: "orange",
-          body: "The client explicitly wanted the product to feel cool rather than clinical — a differentiation problem as much as a usability one.",
-        },
-        {
           k: "Effort disappears once it is done",
+          tone: "cyan",
+          body: "A workout logged into a private history has nowhere to go. The product needed somewhere for that effort to land where it would still matter tomorrow.",
+        },
+        {
+          k: "Solo motivation runs out",
           tone: "orange",
-          body: "Existing alternatives did not let people see their activity accumulate, which is the gap the route-tracking feature was designed to fill.",
-        },
-      ],
-    },
-    {
-      kind: "features",
-      id: "decisions",
-      label: "Design decisions",
-      intro: "Three decisions documented in the original design journey.",
-      items: [
-        {
-          name: "Simple design",
-          desc: "The simplest and most intuitive interface the product could carry, with the explicit aim that all users could learn how to use the app without instruction.",
+          body: "Personal goals work until they do not. A shared target with a deadline supplies a reason to log today's session that a personal streak cannot.",
         },
         {
-          name: "Make it cool",
-          desc: "A sharp lime-green and black colour scheme, chosen to carry the sensation of burning calories into the visual identity itself rather than leaving the aesthetic neutral.",
+          k: "Logging has to be almost free",
+          tone: "cyan",
+          body: "Anything that takes more than a few taps after exercise will not get done. The entry flow had to be shorter than the temptation to skip it.",
         },
         {
-          name: "Track their journey",
-          desc: "A route journey feature so people can follow their own path and watch their accumulations build — the capability positioned as the difference from existing alternatives.",
+          k: "The category looks clinical",
+          tone: "orange",
+          body: "Fitness interfaces trend calm, medical and neutral. This product needed to feel like exertion, not like a health record.",
         },
       ],
     },
@@ -105,18 +66,94 @@ export const caloriesFitnessApp: CaseStudy = {
       id: "role",
       label: "My role",
       body: [
-        "Designer. The published work covers product positioning, interaction design and visual identity, delivered as mobile interface designs with a desktop counterpart.",
-        "The client relationship is visible in the design record: the aesthetic direction came from the client, and the design work resolved it against the usability goal rather than treating the two as separate requirements.",
+        "Designer. The work covered product positioning, the interaction model, the visual identity and the interface across both mobile and web.",
+        "The aesthetic direction came from the client, who wanted something with energy rather than something clinical. Resolving that against the usability goal — that anyone should be able to work out how to use the app without instruction — was the central design tension of the project.",
       ],
     },
     {
-      kind: "list",
-      id: "artefacts",
-      label: "Artefacts produced",
+      kind: "features",
+      id: "decisions",
+      label: "Design decisions",
       items: [
-        "Mobile application interface designs",
-        "A desktop version of the interface",
-        "A documented design journey covering positioning, simplicity, visual identity and the tracking feature",
+        {
+          name: "The collective number leads",
+          desc: "The community total is the largest element on the home screen, above the user's own figure. The hierarchy states the proposition before any copy has to explain it.",
+        },
+        {
+          name: "A countdown, not an open goal",
+          desc: "A running clock sits directly beneath the total. A shared target with no deadline is an aspiration; a shared target with a deadline is an event.",
+        },
+        {
+          name: "Simplicity as the first constraint",
+          desc: "The simplest and most intuitive structure the product could carry, so a new user learns it in one session with nothing to read first.",
+        },
+        {
+          name: "Lime on black",
+          desc: "A sharp, high-contrast palette that carries the sensation of burning calories into the identity itself — unusual in a category that defaults to calm blues and whites.",
+        },
+        {
+          name: "Logging in structured steps",
+          desc: "Activity entry breaks into labelled steps beginning with the type of exercise, so each screen asks one question and the whole flow stays skimmable.",
+        },
+        {
+          name: "Journey tracking",
+          desc: "A personal record view alongside the collective total, so people can see their own accumulation building underneath the shared one.",
+        },
+      ],
+    },
+    {
+      kind: "media",
+      id: "screens",
+      label: "The mobile product",
+      layout: "devices",
+      intro:
+        "Four screens: the branded entry point, sign-in, the collective dashboard, and the first step of logging an activity.",
+      items: [
+        {
+          src: "/work/calories-splash.webp",
+          alt: "App splash screen in a phone frame showing the FoodSport logo in white on black, with pale blue flowing ribbon graphics sweeping across the lower half.",
+          caption: "Entry point: the FoodSport identity, ribbon motif and near-black ground.",
+          width: 620,
+          height: 1274,
+        },
+        {
+          src: "/work/calories-login.webp",
+          alt: "Sign-in screen headed 'Burnathon Goooo' in a brush script typeface, with username and password fields, a lime green Login button, and links reading How To Join and More Info.",
+          caption: "Sign-in: brush headline, lime call to action, two routes in for newcomers.",
+          width: 620,
+          height: 1366,
+        },
+        {
+          src: "/work/calories-dashboard.webp",
+          alt: "Dashboard showing a lime green panel headed 'Total Calorie Collected' with a large community figure, a dark panel below headed 'Time remaining' with a countdown, the user's own calorie total in large italic type, and buttons for Submit New Calorie, View My Record and Log out.",
+          caption: "The proposition in one screen: collective total, countdown, personal contribution.",
+          width: 620,
+          height: 1372,
+        },
+        {
+          src: "/work/calories-log.webp",
+          alt: "Activity logging screen headed 'Step 1: Select which type of fitness you have done' with a search field and a grid of tiles for Cardio, Strength and Flexibility.",
+          caption: "Logging: one question per step, tiles rather than a dropdown.",
+          width: 620,
+          height: 1382,
+        },
+      ],
+    },
+    {
+      kind: "media",
+      id: "web",
+      label: "The web product",
+      layout: "wide",
+      intro:
+        "The same identity carried onto desktop, where the collective total becomes the headline rather than a panel.",
+      items: [
+        {
+          src: "/work/calories-web.webp",
+          alt: "FoodSports website in a laptop frame with a deep navy background, navigation for Home, How To Join, About Us and MyJourney, a large brush-script headline reading 'Buranthon Gooo!', a mint green Login To Your Account button, flowing line graphics, and a strip below reading 'How Much We Have Collected'.",
+          caption: "Web: same brush headline and ribbon motif, wider navigation, collective total below the fold.",
+          width: 1500,
+          height: 798,
+        },
       ],
     },
     {
@@ -124,24 +161,17 @@ export const caloriesFitnessApp: CaseStudy = {
       id: "solution",
       label: "Solution",
       body: [
-        "A mobile-first fitness product whose visual identity does part of the motivational work. The high-contrast lime-and-black palette is not decoration — it was chosen so that the interface itself communicates exertion, which is unusual in a category that tends towards calm, clinical design.",
-        "Underneath that, the interaction model was pushed towards immediate legibility, and the route journey view gives the effort somewhere to accumulate so that using the app repeatedly produces something to look back at.",
+        "A two-surface product with one identity. Mobile is where activity gets logged and the collective total gets checked — short sessions, large numbers, minimal chrome. Web is where the challenge is explained and joined, with room for the how-to-join and about material that would clutter a phone screen.",
+        "The visual system does real work in both. The brush-script headline, the ribbon motif and the lime-on-black palette carry effort and momentum, which means the interface reinforces the product's proposition rather than staying neutral while the copy does the persuading.",
       ],
-    },
-    {
-      kind: "note",
-      id: "gaps",
-      label: "What is not documented",
-      tone: "orange",
-      body: "The original source does not record the timeline, team, design tools, target user research, the complete feature set, the full user journey, whether the app was built and shipped, or any testing or measured outcome. Rather than invent those, this page stops where the evidence stops — they can be added once Tony confirms them.",
     },
     {
       kind: "prose",
       id: "lessons",
       label: "Reflection",
       body: [
-        "The interesting tension in this project is one that recurs constantly in product work: a client asking for a strong aesthetic and a design goal demanding effortless comprehension are not automatically compatible. Resolving them into a single sharp colour system that also happened to reinforce the product's core action is the decision worth carrying forward.",
-        "Placed alongside the later work in this portfolio, it also marks a starting point. The instinct visible here — find the one capability that differentiates, then design the whole product around it — is the same instinct applied at much larger scale in the enterprise and AI projects that followed.",
+        "The tension worth remembering is that a client asking for a strong aesthetic and a design goal demanding effortless comprehension are not automatically compatible. Resolving them into one sharp colour system that also reinforced the product's core action is the decision I would carry into another project.",
+        "Placed alongside the later work in this portfolio, it also marks a starting point. The instinct visible here — find the one thing that differentiates, then design the whole product around it — is the same instinct applied at much larger scale in the enterprise and AI work that followed.",
       ],
     },
   ],

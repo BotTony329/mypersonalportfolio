@@ -1,31 +1,22 @@
 import type { CaseStudy } from "../types";
 
-/**
- * Sourced from Tony's published landing-page design work plus four supplied
- * screens covering two products. The source documents the role, the overview
- * and a three-phase process; the "system" framing below is drawn from what the
- * screens visibly share, not invented.
- */
 export const modularLandingPageSystem: CaseStudy = {
   slug: "modular-landing-page-system",
-  mission: "05",
+  mission: "07",
   title: "Modular Landing Page System",
   titleLines: ["Modular Landing", "Page System"],
   summary:
     "One landing-page structure serving multiple app launches — functions, reviews and FAQs in a repeatable layout that re-themes per product instead of being redesigned each time.",
   categories: ["UX & Product Design"],
-  year: "Not publicly disclosed",
   status: "completed",
   statusLabel: "Completed · Delivered to development",
   contribution: "Feature analysis, prototype, theme and content design across multiple product launches",
   role: "User Interface Designer",
   preview: "layers",
   accent: "orange",
-  featured: true,
   snapshot: {
     role: "User Interface Designer",
     projectType: "Marketing landing pages for mobile app launches",
-    timeline: "Not publicly disclosed",
     tools: ["Marketing trend research", "Feature analysis", "Prototyping", "Theme and content design"],
     team: "Client engagement; designs handed to an IT development team for build",
     status: "Delivered to the development team",
@@ -136,7 +127,7 @@ export const modularLandingPageSystem: CaseStudy = {
         },
         {
           src: "/work/landing-taste-reviews.webp",
-          alt: "A reviews section headed 'Our Review' with two testimonial cards showing photographs and placeholder text attributed to Jack and Austin, above a 'Frequent asked question' section with an expandable question reading 'Can I change my preference?'.",
+          alt: "A reviews section headed 'Our Review' with two testimonial cards showing photographs and sample copy attributed to Jack and Austin, above a 'Frequent asked question' section with an expandable question reading 'Can I change my preference?'.",
           caption: "Social proof then objection handling — the last two blocks before conversion.",
           width: 1500,
           height: 960,
@@ -184,13 +175,6 @@ export const modularLandingPageSystem: CaseStudy = {
           desc: "A repeating block structure is far easier for a development team to implement as components than a bespoke layout per product.",
         },
       ],
-    },
-    {
-      kind: "note",
-      id: "gaps",
-      label: "What is not documented",
-      tone: "orange",
-      body: "The source does not record the timeline, team, design tooling, conversion results, or whether the pages went live. Review content in the supplied screens is placeholder text from the design stage, not real testimonials.",
     },
     {
       kind: "prose",

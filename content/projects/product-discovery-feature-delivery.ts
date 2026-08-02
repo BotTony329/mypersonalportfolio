@@ -2,7 +2,7 @@ import type { CaseStudy } from "../types";
 
 export const productDiscoveryFeatureDelivery: CaseStudy = {
   slug: "product-discovery-feature-delivery",
-  mission: "03",
+  mission: "05",
   title: "Product Discovery & Feature Delivery",
   titleLines: ["Product Discovery", "& Feature Delivery"],
   summary:
@@ -174,13 +174,6 @@ export const productDiscoveryFeatureDelivery: CaseStudy = {
           body: "The same person who wrote the requirements tested them and supported the deployment.",
         },
       ],
-    },
-    {
-      kind: "note",
-      id: "verification",
-      label: "On the numbers",
-      tone: "cyan",
-      body: "No usage, conversion or A/B test result figures are published for this engagement. The outcome above describes what was released, not measured business results.",
     },
     {
       kind: "prose",

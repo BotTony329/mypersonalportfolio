@@ -8,6 +8,7 @@ import { PROJECTS } from "@/content/projects";
 
 const GENERAL = [
   "What kind of Business Analyst is Tony?",
+  "What is MART?",
   "Which project best demonstrates end-to-end delivery?",
   "What AI products has Tony designed?",
   "What tools and methods does Tony use?",
@@ -33,7 +34,7 @@ const PER_PROJECT: Record<string, string[]> = {
   "calories-fitness-app": [
     "What was the Calories app?",
     "What design decisions shaped Calories?",
-    "What is not documented about that project?",
+    "How did the collective total shape the design?",
   ],
   "product-discovery-feature-delivery": [
     "What did Tony do at Syaila?",
@@ -43,12 +44,22 @@ const PER_PROJECT: Record<string, string[]> = {
   "digital-ticketing-experience": [
     "How does the ticketing app personalise events?",
     "What was Tony's design process here?",
-    "What is not documented about this project?",
+    "Why is preference captured during onboarding?",
   ],
   "modular-landing-page-system": [
     "What makes the landing pages a system?",
     "What structure do the landing pages follow?",
     "Which products used this system?",
+  ],
+  "enterprise-ai-copilot-strategy": [
+    "What is MART?",
+    "How did this AI strategy differ from ChatGPT?",
+    "What enterprise problems was it designed to solve?",
+  ],
+  "fmcg-digital-transformation": [
+    "How was the digital transformation roadmap created?",
+    "What research methods did Tony use?",
+    "What role did Tony play in the presentation?",
   ],
   "ux-design-evaluation": [
     "How did Tony run the usability evaluation?",

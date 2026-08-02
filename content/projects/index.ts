@@ -1,6 +1,8 @@
 import type { CaseStudy, Category } from "../types";
-import { aiTeacherPlatform } from "./ai-teacher-platform";
 import { enterpriseLogisticsSaas } from "./enterprise-logistics-saas";
+import { aiTeacherPlatform } from "./ai-teacher-platform";
+import { enterpriseAiCopilotStrategy } from "./enterprise-ai-copilot-strategy";
+import { fmcgDigitalTransformation } from "./fmcg-digital-transformation";
 import { productDiscoveryFeatureDelivery } from "./product-discovery-feature-delivery";
 import { digitalTicketingExperience } from "./digital-ticketing-experience";
 import { modularLandingPageSystem } from "./modular-landing-page-system";
@@ -13,13 +15,16 @@ import { caloriesFitnessApp } from "./calories-fitness-app";
  * navigation and static route generation all read this one array, so adding a
  * project is a single import plus one entry here.
  *
- * The first six are the featured set and appear on the homepage in this order.
- * The independent products that follow are reachable from the archive and from
- * the Product Lab, where they belong to a different story.
+ * The first five carry `featured` and lead the homepage: enterprise delivery,
+ * AI product, enterprise AI strategy, transformation strategy, product
+ * discovery. The UX craft projects and the independent products follow in the
+ * archive — they support the story rather than opening it.
  */
 export const PROJECTS: CaseStudy[] = [
-  aiTeacherPlatform,
   enterpriseLogisticsSaas,
+  aiTeacherPlatform,
+  enterpriseAiCopilotStrategy,
+  fmcgDigitalTransformation,
   productDiscoveryFeatureDelivery,
   digitalTicketingExperience,
   modularLandingPageSystem,

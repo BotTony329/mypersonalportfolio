@@ -2,7 +2,7 @@ import type { CaseStudy } from "../types";
 
 export const enterpriseLogisticsSaas: CaseStudy = {
   slug: "enterprise-logistics-saas",
-  mission: "02",
+  mission: "01",
   title: "Enterprise Logistics SaaS",
   titleLines: ["Enterprise", "Logistics SaaS"],
   summary:
@@ -218,13 +218,6 @@ export const enterpriseLogisticsSaas: CaseStudy = {
           body: "Contribution spanned introduction, discovery, prototyping, specification, development support, testing, documentation and delivery.",
         },
       ],
-    },
-    {
-      kind: "note",
-      id: "verification",
-      label: "On the numbers",
-      tone: "cyan",
-      body: "No efficiency, cost or adoption figures are published for this engagement. The outcomes above describe what was delivered and handed over, not measured business results.",
     },
     {
       kind: "prose",

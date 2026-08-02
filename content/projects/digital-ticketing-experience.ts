@@ -1,33 +1,24 @@
 import type { CaseStudy } from "../types";
 
-/**
- * Sourced from Tony's published UI-design page for this project plus the two
- * high-fidelity screens he supplied. The page documents the role, the two-phase
- * process and the product intent; anything beyond that is marked as not
- * disclosed rather than inferred.
- */
 export const digitalTicketingExperience: CaseStudy = {
   slug: "digital-ticketing-experience",
-  mission: "04",
+  mission: "06",
   title: "Digital Ticketing Experience",
   titleLines: ["Digital Ticketing", "Experience"],
   summary:
     "A sports ticketing app designed around personal preference and group plans — pick the sports you follow, get events surfaced to match, and organise going with friends.",
   categories: ["UX & Product Design"],
-  year: "Not publicly disclosed",
   status: "completed",
   statusLabel: "Completed · Delivered to client",
   contribution: "UI design from competitor research through to high-fidelity prototype",
   role: "User Interface Designer",
   preview: "ticket",
   accent: "cyan",
-  featured: true,
   snapshot: {
     role: "User Interface Designer",
     projectType: "Mobile application · sports event ticketing",
-    timeline: "Not publicly disclosed",
     tools: ["Market and competitor research", "Mind mapping", "Low-fidelity prototyping", "High-fidelity prototyping"],
-    team: "Client engagement — team composition not publicly disclosed",
+    team: "Client engagement",
     status: "Prototypes delivered and refined against client feedback",
   },
   seoDescription:
@@ -154,13 +145,6 @@ export const digitalTicketingExperience: CaseStudy = {
           desc: "The group half of the product sits in the main navigation rather than inside a share menu, matching the reality that going is a group decision.",
         },
       ],
-    },
-    {
-      kind: "note",
-      id: "gaps",
-      label: "What is not documented",
-      tone: "orange",
-      body: "The published source does not record the timeline, team composition, design tooling, the research findings themselves, or whether the app was built and shipped. Those are left out rather than reconstructed.",
     },
     {
       kind: "prose",

@@ -130,7 +130,16 @@ function buildIndex(): Passage[] {
       title: p.title,
       href,
       section: "Overview",
-      text: `${p.summary} Role: ${p.role}. Category: ${p.categories.join(", ")}. Status: ${p.statusLabel}. Timeline: ${p.snapshot.timeline}. Team: ${p.snapshot.team}. Tools: ${p.snapshot.tools.join(", ")}. Key contribution: ${p.contribution}.`,
+      text: [
+        p.summary,
+        `Role: ${p.role}.`,
+        `Category: ${p.categories.join(", ")}.`,
+        `Status: ${p.statusLabel}.`,
+        p.snapshot.timeline ? `Timeline: ${p.snapshot.timeline}.` : "",
+        p.snapshot.team ? `Team: ${p.snapshot.team}.` : "",
+        p.snapshot.tools?.length ? `Tools: ${p.snapshot.tools.join(", ")}.` : "",
+        `Key contribution: ${p.contribution}.`,
+      ].filter(Boolean).join(" "),
       keywords: [p.title.toLowerCase(), p.slug, ...p.categories.map((c) => c.toLowerCase())],
     });
 
@@ -194,7 +203,7 @@ export function retrieve(question: string, limit = 5): Passage[] {
 }
 
 export const FALLBACK_ANSWER =
-  "I don't have verified information about that yet, but you can contact Tony directly.";
+  "That one is outside what I can speak to — Tony can answer it directly.";
 
 /** Trimmed context for the model — enough to answer, small enough to stay cheap. */
 export function buildContext(passages: Passage[], budget = 4200): string {

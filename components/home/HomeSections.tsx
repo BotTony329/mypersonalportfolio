@@ -48,8 +48,9 @@ export function SelectedMissions() {
           <Reveal as="p" className="eyebrow">Selected Missions</Reveal>
           <SplitHeading lines={["Mission Control"]} />
           <Reveal as="p" className="lede">
-            Six programmes across AI products, enterprise SaaS and product design.
-            Each one starts as an ambiguous problem and ends as a system people use.
+            Enterprise delivery, AI products and transformation strategy. Each one
+            starts as an ambiguous business problem and ends as something a client
+            can act on.
           </Reveal>
         </div>
 
@@ -81,10 +82,10 @@ export function CopilotIntro() {
               <SplitHeading lines={["Meet Moo,", "the co-pilot"]} />
             </div>
             <Reveal as="p" className="lede">
-              Moo is a tuxedo-cat astronaut who has read the whole portfolio and
+              Moo is an astronaut cat who has read the whole portfolio and
               nothing else. Ask her about a project, a method, or what Tony
               actually did on a delivery — she answers from the published case
-              studies and says so plainly when something is not verified.
+              studies, and points you to Tony for anything beyond them.
             </Reveal>
             <Reveal as="p" className="small copilot-note" delay={0.1}>
               She is bottom-right, permanently. Pet her enough times and she purrs.

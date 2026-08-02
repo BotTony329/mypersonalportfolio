@@ -1,33 +1,23 @@
 import type { CaseStudy } from "../types";
 
-/**
- * Sourced from Tony's published UX-design page. That page documents the
- * subject, the role and the three-stage method. It does not publish the
- * findings or the recommendations themselves, and this case study does not
- * invent them.
- */
 export const uxDesignEvaluation: CaseStudy = {
   slug: "ux-design-evaluation",
-  mission: "06",
+  mission: "08",
   title: "UX Design Evaluation",
   titleLines: ["UX Design", "Evaluation"],
   summary:
     "A structured usability evaluation of a board-game shopping and design website — expert review, then moderated and unmoderated testing, then recommendations built from the data rather than from opinion.",
   categories: ["UX & Product Design"],
-  year: "Not publicly disclosed",
   status: "completed",
   statusLabel: "Completed · Recommendations delivered",
   contribution: "Designed and ran the evaluation, analysed the data and advised recommendations",
   role: "User Experience Designer",
   preview: "orbit",
   accent: "cyan",
-  featured: true,
   snapshot: {
     role: "User Experience Designer",
     projectType: "Usability evaluation · e-commerce and design website",
-    timeline: "Not publicly disclosed",
     tools: ["Expert review", "Test scenario design", "Moderated usability testing", "Unmoderated usability testing", "Data analysis"],
-    team: "Not publicly disclosed",
     status: "Findings and recommendations delivered",
   },
   seoDescription:
@@ -140,13 +130,6 @@ export const uxDesignEvaluation: CaseStudy = {
           desc: "Every recommendation traces to something observed, which is what makes a UX report arguable on evidence rather than on taste.",
         },
       ],
-    },
-    {
-      kind: "note",
-      id: "gaps",
-      label: "What is not documented",
-      tone: "orange",
-      body: "The published source records the method and the role but not the specific findings, the recommendations, participant numbers, or whether the recommendations were implemented. Those are omitted here rather than reconstructed — a usability study with invented findings would be worse than no case study at all.",
     },
     {
       kind: "prose",

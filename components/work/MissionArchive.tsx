@@ -76,7 +76,7 @@ export default function MissionArchive({
                 <span className={`pcard-status ${p.status}`}>
                   <i className="dot" aria-hidden />{p.statusLabel}
                 </span>
-                <span className="archive-year mono">{p.year}</span>
+                {p.year ? <span className="archive-year mono">{p.year}</span> : null}
                 <span className="archive-go" aria-hidden>→</span>
               </span>
             </Link>

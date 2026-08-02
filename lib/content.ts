@@ -23,7 +23,6 @@ export const IDENTITY = {
   roles: ["Business Analyst", "AI Product Builder", "Digital Transformation"],
   headline: ["Building intelligent systems that connect", "business strategy, user needs, and AI."],
   email: "tonyzhao32965@gmail.com",
-  /* TODO Tony: replace with your public profile URL. */
   linkedin: "https://www.linkedin.com/in/tonyzhao329/",
   etsy: "https://www.etsy.com/shop/DriftDecoStudio",
   location: "Melbourne · AUS",

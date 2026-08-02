@@ -1,15 +1,8 @@
 import type { CaseStudy } from "../types";
 
-/**
- * Translated and restructured from the project's Chinese technical
- * documentation (README.md for "ECE OS — Early Childhood Educator Operating
- * System"). Developer setup instructions, seeded credentials and internal
- * environment identifiers from that document are deliberately excluded from
- * the public narrative.
- */
 export const earlyChildhoodEducatorOs: CaseStudy = {
   slug: "early-childhood-educator-os",
-  mission: "07",
+  mission: "09",
   title: "Early Childhood Educator OS",
   titleLines: ["Early Childhood", "Educator OS"],
   summary:
@@ -25,7 +18,6 @@ export const earlyChildhoodEducatorOs: CaseStudy = {
   snapshot: {
     role: "Product design, system architecture and full-stack implementation",
     projectType: "AI SaaS · early childhood education · web application",
-    timeline: "Not publicly disclosed",
     tools: [
       "Next.js (App Router)",
       "TypeScript (strict)",
@@ -36,7 +28,6 @@ export const earlyChildhoodEducatorOs: CaseStudy = {
       "Containerised cloud runtime",
       "LLM API",
     ],
-    team: "Not publicly disclosed",
     status: "Deployed and running in production",
   },
   seoDescription:
@@ -319,13 +310,6 @@ export const earlyChildhoodEducatorOs: CaseStudy = {
           body: "Quality gates and deterministic fallbacks mean the wizard always produces a complete story, whether or not the model responds.",
         },
       ],
-    },
-    {
-      kind: "note",
-      id: "verification",
-      label: "On the numbers",
-      tone: "cyan",
-      body: "User counts, adoption and commercial results for this product are not publicly disclosed and are not claimed here. The outcomes above describe what was built and deployed.",
     },
     {
       kind: "prose",
