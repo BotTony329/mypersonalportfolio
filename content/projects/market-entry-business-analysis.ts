@@ -1,32 +1,32 @@
 import type { CaseStudy } from "../types";
 
-/** Consulting engagement. Client described by sector; team members unnamed. */
-export const fmcgDigitalTransformation: CaseStudy = {
-  slug: "fmcg-digital-transformation",
+/** Market entry analysis. Client described by sector; team members unnamed. */
+export const marketEntryBusinessAnalysis: CaseStudy = {
+  slug: "market-entry-business-analysis",
   mission: "04",
-  title: "FMCG Digital Transformation Strategy",
-  titleLines: ["FMCG Digital", "Transformation"],
+  title: "Market Entry Business Analysis",
+  titleLines: ["Market Entry", "Business Analysis"],
   summary:
-    "A full consulting engagement for an ice-cream manufacturer evaluating entry into the modern tea beverage market — external industry research, internal capability assessment, and a strategic transformation proposal.",
-  categories: ["Enterprise Consulting", "Digital Transformation", "Enterprise SaaS"],
+    "Business analysis for a manufacturer entering a crowded new category — industry research, capability assessment, and a redesigned business and operating model built on what the analysis actually supported.",
+  categories: ["Enterprise Consulting", "Business Analysis"],
   year: "Delivered",
   status: "completed",
-  statusLabel: "Completed · Strategy presented",
-  contribution: "Industry research, internal business analysis and the transformation strategy presentation",
-  role: "Business Analyst · Strategy",
+  statusLabel: "Completed · Recommendations presented",
+  contribution: "Industry research, internal business analysis and the market entry strategy",
+  role: "Business Analyst",
   preview: "arch",
   accent: "cyan",
   featured: true,
   snapshot: {
-    role: "Business Analyst — research, internal assessment and strategy",
-    projectType: "Enterprise consulting engagement · market entry and business transformation",
+    role: "Business Analyst — industry research, internal assessment and recommendations",
+    projectType: "Consulting engagement · market entry analysis and business model redesign",
     tools: ["PEST analysis", "Porter value chain", "Stakeholder analysis", "Business capability analysis", "Gap analysis", "SWOT", "VRIO", "4P competitor analysis"],
-    team: "Five-person consulting team. I led the transformation strategy; colleagues covered pricing, branding, marketing and employee training.",
-    status: "Research and strategy delivered and presented",
+    team: "Five-person consulting team. I led the entry strategy; colleagues covered pricing, branding, marketing and employee training.",
+    status: "Analysis and recommendations delivered and presented",
   },
   confidentiality: "Client described by sector only",
   seoDescription:
-    "An enterprise consulting engagement for an FMCG manufacturer: PEST and value chain industry research, stakeholder and capability assessment, SWOT, VRIO and gap analysis, and a strategic transformation proposal.",
+    "Business analysis for a manufacturer entering a competitive new category: PEST and value chain industry research, stakeholder and capability assessment, SWOT, VRIO and gap analysis, and a redesigned business model.",
   blocks: [
     {
       kind: "note",
@@ -42,7 +42,7 @@ export const fmcgDigitalTransformation: CaseStudy = {
       body: [
         "The client was an FMCG manufacturer whose business was built on ice cream: a strong single product line, and all the exposure that comes with one. Ice cream is seasonal, competition was intensifying, and consumer tastes were fragmenting.",
         "Their proposition was to enter the modern tea beverage market — an adjacent category with a young customer base, higher margin potential and, critically, year-round demand. The engagement was to establish whether that was a good idea, and if so, what would have to change inside the business for it to work.",
-        "The question is more interesting than it first appears. Entering a new category is not a marketing exercise; it touches supply chain, store operations, staffing, capital allocation and brand. That is what makes it a transformation problem rather than a product launch.",
+        "The question is more interesting than it first appears. Entering a new category is not a marketing exercise; it touches supply chain, store operations, staffing, capital allocation and brand. Answering it properly means rebuilding how the business makes money, not just adding a product to the menu.",
       ],
     },
     {
@@ -77,8 +77,8 @@ export const fmcgDigitalTransformation: CaseStudy = {
       id: "role",
       label: "My role",
       body: [
-        "I worked as a Business Analyst across both halves of the engagement — the external industry research and the internal business assessment — and led the transformation strategy in the final presentation.",
-        "This was a five-person team and the work was shared. I led approximately an hour of the final presentation covering the transformation strategy itself; colleagues presented the supporting workstreams of pricing, branding, marketing and employee training. Those were team contributions, not mine.",
+        "I worked as a Business Analyst across both halves of the engagement — the external industry research and the internal business assessment — and led the entry strategy in the final presentation.",
+        "This was a five-person team and the work was shared. I led approximately an hour of the final presentation covering the entry strategy and the operating model it implied; colleagues presented the supporting workstreams of pricing, branding, marketing and employee training. Those were team contributions, not mine.",
       ],
     },
     {
@@ -100,7 +100,7 @@ export const fmcgDigitalTransformation: CaseStudy = {
         { name: "Gap analysis", desc: "Current state against target state — pricing position, investment posture, marketing reach and channel breadth." },
         { name: "SWOT", desc: "Strengths, weaknesses, opportunities and threats, built from the preceding analysis rather than from a workshop." },
         { name: "VRIO", desc: "Which resources are valuable, rare, hard to imitate and organisationally exploitable — the test of whether any advantage is durable." },
-        { name: "Strategy presentation", desc: "Conclusions and recommendations delivered as a strategic transformation proposal to the client." },
+        { name: "Strategy presentation", desc: "Conclusions and recommendations delivered to the client as a market entry strategy and a redesigned operating model." },
       ],
     },
     {
@@ -144,11 +144,50 @@ export const fmcgDigitalTransformation: CaseStudy = {
       ],
     },
     {
+      kind: "stack",
+      id: "model",
+      label: "Rebuilding the business model",
+      intro:
+        "Entering the category meant more than adding a product. Each dimension below came out of the gap between where the business was and what the target position demanded.",
+      layers: [
+        {
+          k: "01 · Revenue model",
+          tone: "orange",
+          body: "The category earns across a wider base than a single product line — extended food service, franchising, co-branded ranges and delivery all sit alongside core sales. A single-product revenue model had to widen to compete.",
+        },
+        {
+          k: "02 · Positioning tier",
+          tone: "cyan",
+          body: "Premium, mid and value tiers demand different things: ingredient quality and experience at the top, price and reach below. Choosing a tier is the decision every other decision follows from — and the analysis argued against choosing on margin alone.",
+        },
+        {
+          k: "03 · Channel model",
+          tone: "orange",
+          body: "The existing business ran a single sales channel. The category runs physical stores, delivery platforms and mini-programme ordering in parallel, which changes store format, staffing and operating hours.",
+        },
+        {
+          k: "04 · Value chain position",
+          tone: "cyan",
+          body: "Upstream materials, midstream processing and brand operation, downstream retail. Mapping the client's own primary and support activities against that chain showed where they could genuinely add value and where they would be dependent.",
+        },
+        {
+          k: "05 · Store operating model",
+          tone: "orange",
+          body: "Category leaders treat the store as a leisure space rather than a takeaway counter. That reshapes format, layout, dwell time and service process — an operational change, not a marketing one.",
+        },
+        {
+          k: "06 · Investment posture",
+          tone: "cyan",
+          body: "A limited-store, limited-budget pilot is a legitimate strategy, but only for some of the tiers above. Making that constraint explicit is what kept the recommendation executable rather than aspirational.",
+        },
+      ],
+    },
+    {
       kind: "prose",
       id: "presentation",
       label: "The presentation",
       body: [
-        "The engagement closed with a strategic transformation proposal presented to the client. I led approximately an hour of it, covering the transformation strategy: the market position, the capability gap, and what would have to change for entry to succeed.",
+        "The engagement closed with a strategy presentation to the client. I led approximately an hour of it: the market position, the capability gap, and what would have to change in the business model and the operating process for entry to succeed.",
         "The remaining workstreams — pricing, branding, marketing and employee training — were presented by colleagues. The value of splitting it that way is that each presenter had actually done the analysis they were defending, which matters the moment a client asks a follow-up question.",
       ],
     },

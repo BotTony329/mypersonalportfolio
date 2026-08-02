@@ -111,6 +111,7 @@ export type ProjectStatus = "active" | "completed" | "live";
 
 export const CATEGORIES = [
   "Enterprise Consulting",
+  "Business Analysis",
   "AI Products",
   "Enterprise SaaS",
   "UX & Product Design",

@@ -56,8 +56,8 @@ const PER_PROJECT: Record<string, string[]> = {
     "How did this AI strategy differ from ChatGPT?",
     "What enterprise problems was it designed to solve?",
   ],
-  "fmcg-digital-transformation": [
-    "How was the digital transformation roadmap created?",
+  "market-entry-business-analysis": [
+    "How did Tony assess the market entry?",
     "What research methods did Tony use?",
     "What role did Tony play in the presentation?",
   ],

@@ -2,7 +2,7 @@ import type { CaseStudy, Category } from "../types";
 import { enterpriseLogisticsSaas } from "./enterprise-logistics-saas";
 import { aiTeacherPlatform } from "./ai-teacher-platform";
 import { enterpriseAiCopilotStrategy } from "./enterprise-ai-copilot-strategy";
-import { fmcgDigitalTransformation } from "./fmcg-digital-transformation";
+import { marketEntryBusinessAnalysis } from "./market-entry-business-analysis";
 import { productDiscoveryFeatureDelivery } from "./product-discovery-feature-delivery";
 import { digitalTicketingExperience } from "./digital-ticketing-experience";
 import { modularLandingPageSystem } from "./modular-landing-page-system";
@@ -24,7 +24,7 @@ export const PROJECTS: CaseStudy[] = [
   enterpriseLogisticsSaas,
   aiTeacherPlatform,
   enterpriseAiCopilotStrategy,
-  fmcgDigitalTransformation,
+  marketEntryBusinessAnalysis,
   productDiscoveryFeatureDelivery,
   digitalTicketingExperience,
   modularLandingPageSystem,
